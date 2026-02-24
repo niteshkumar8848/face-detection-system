@@ -27,3 +27,7 @@ coverage/
 
 # vscode
 .vscode/
+
+node_modules/
+.cache/
+**/.cache
