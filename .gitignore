@@ -1,79 +1,29 @@
-# Dependencies
+# dependencies
 node_modules/
-/node_modules/
-client/node_modules/
-server/node_modules/
 
-# Build outputs
-build/
-dist/
-client/build/
-client/dist/
-
-# Package lock files (optional - some prefer to keep these)
-# package-lock.json
-# client/package-lock.json
-# server/package-lock.json
-
-# Environment variables
+# env
 .env
-.env.local
-.env.development
-.env.production
-.env*.local
-
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-
-# OS files
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~
-
-# IDE
-.idea/
-.vscode/
-*.sublime-*
-*.sublime-*
-
-# Testing
-coverage/
-.nyc_output/
-
-# Temporary files
-tmp/
-temp/
-*.tmp
-
-# Cache
-.cache/
-.parcel-cache/
-.next/
-.nuxt/
-
-# ML Models (these are large files and can be downloaded separately)
-client/public/models/
-
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Local env files
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# Misc
-*.pid
-*.seed
-*.pid.lock
+# logs
+logs
+*.log
+npm-debug.log*
 
+# OS
+.DS_Store
+Thumbs.db
+
+# build
+dist/
+build/
+
+# cache
+.cache/
+coverage/
+
+# vscode
+.vscode/
