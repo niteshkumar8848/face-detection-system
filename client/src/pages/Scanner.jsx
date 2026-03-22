@@ -49,7 +49,6 @@ const Scanner = () => {
   const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [statusMessage, setStatusMessage] = useState("Camera is off.");
   const [lastResult, setLastResult] = useState(null);
   const [isAutoScanning, setIsAutoScanning] = useState(false);
   const [liveFaces, setLiveFaces] = useState([]);
@@ -149,7 +148,6 @@ const Scanner = () => {
     setLoading(false);
     setLastResult(null);
     setLiveFaces([]);
-    setStatusMessage("Camera is off.");
     isDetectingRef.current = false;
     finalizeSession();
   }, [finalizeSession, stopAutoScan]);
@@ -203,7 +201,6 @@ const Scanner = () => {
   const startVideo = async () => {
     try {
       setError("");
-      setStatusMessage("Starting camera...");
 
       const stream = await navigator.mediaDevices.getUserMedia({
         video: {
@@ -216,12 +213,9 @@ const Scanner = () => {
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
-
-      setStatusMessage("Camera is ready. Initializing live analysis...");
     } catch (err) {
       console.error("Error accessing webcam:", err);
       setConsent(false);
-      setStatusMessage("Camera is off.");
       setError("Could not access webcam. Please allow camera permissions.");
     }
   };
@@ -317,7 +311,6 @@ const Scanner = () => {
       if (!detections.length) {
         drawOverlay([]);
         setLiveFaces([]);
-        setStatusMessage("No face detected. Keep your face centered in the frame.");
         return;
       }
 
@@ -392,10 +385,6 @@ const Scanner = () => {
           session.alerts += 1;
         }
       }
-
-      setStatusMessage(
-        `Live analysis active (${ANALYSIS_INTERVAL_MS / 1000}s). Faces: ${annotatedFaces.length}.`
-      );
 
       await Promise.all(
         annotatedFaces.map((face) =>
@@ -534,12 +523,6 @@ const Scanner = () => {
               <button className="btn btn-danger" onClick={stopCamera}>
                 Stop Camera
               </button>
-            )}
-
-            {consent && (
-              <span style={{ color: "var(--text-secondary)", fontWeight: 500 }}>
-                {loading ? "Analyzing current frame..." : statusMessage}
-              </span>
             )}
           </div>
 
